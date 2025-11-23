@@ -1,0 +1,29 @@
+#include <iostream>
+#include <climits> // for INT_MAX
+#include <vector>
+
+using namespace std;
+
+void BFS(vector<vector<int >> G){
+  
+
+}
+
+int main() {
+  // Initialize graph as adjacency list
+  int n = 5;
+  vector<vector<int> > G(n);
+
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++){
+      if (i == j){
+	G[i].push_back(0);
+      }
+      else {
+	G[i].push_back(INT_MAX);
+      }
+    }
+  }
+  
+  return 0;
+}
