@@ -1,0 +1,51 @@
+find(u, parent){
+  if (u != parent[u]){
+    parent[u] = find(parent[u], parent)
+  }
+  return parent[u]
+}
+
+union(u, v, rank, parent){
+  if (rank[u] == rank[v]){
+     parent[v] = u
+     rank[u]++
+  }
+  else if (rank[u] > rank[v]){
+     parent[v] = u
+  }
+  else {
+     parent[u] = v
+  }
+}
+
+
+
+// Do not assume a sorted edge list is passed in
+Kruskal(V, E){
+sort(E) // sort in increasing order by weight
+
+// Initialization
+totalCost = 0
+for v in V {
+    parent[v] = v
+    rank[v] = 0
+}
+
+
+for e in E {
+    u = e.origin
+    v = e.destination
+    w = e.weight
+
+    rootU = find(u, parent)
+    rootV = find(v, parent)
+    if (rootU == rootV){
+       continue // cycle detected
+    }
+    union(rootU, rootV, rank, parent)
+    totalCost += w
+}
+
+
+return totalCost
+}
